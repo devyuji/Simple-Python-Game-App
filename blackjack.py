@@ -1,5 +1,5 @@
 # blackjack 0.1v
-# ace value if fixed = 11
+# ace value is going to choose by user itself
 import random as rr
 class computer():
 
@@ -13,7 +13,7 @@ class computer():
             print(self.cards1[i],end=' ')
         print()
     def calc(self):
-        ace = 11
+        ace = int(input())
         self.sum = 0
         for i in range(self.a):
             if (self.cards1[i] == 'two'):
@@ -49,7 +49,7 @@ class human():
             print(self.cards2[i],end=' ')
         print()
     def calc(self):
-        ace  = 11
+        ace  = int(input())
         self.sum = 0
         for i in range(0,self.b):
             if (self.cards2[i] == 'two'):
