@@ -1,5 +1,4 @@
-# blackjack 0.1v
-# ace value is going to choose by user itself
+# blackjack 1.0v
 import random as rr
 class computer():
 
@@ -13,7 +12,6 @@ class computer():
             print(self.cards1[i],end=' ')
         print()
     def calc(self):
-        ace = int(input())
         self.sum = 0
         for i in range(self.a):
             if (self.cards1[i] == 'two'):
@@ -35,6 +33,7 @@ class computer():
             elif (self.cards1[i] == 'ten') or (self.cards1[i] == 'jack') or (self.cards1[i] == 'queen') or (self.cards1[i] == 'king'):
                 self.sum = self.sum + 10
             elif (self.cards1[i] == 'ace'):
+                ace = int(input())
                 self.sum = self.sum + ace
 
 class human():
@@ -49,7 +48,6 @@ class human():
             print(self.cards2[i],end=' ')
         print()
     def calc(self):
-        ace  = int(input())
         self.sum = 0
         for i in range(0,self.b):
             if (self.cards2[i] == 'two'):
@@ -71,6 +69,7 @@ class human():
             elif (self.cards2[i] == 'ten') or (self.cards2[i] == 'jack') or (self.cards2[i] == 'queen') or (self.cards2[i] == 'king'):
                 self.sum = self.sum + 10
             elif (self.cards2[i] == 'ace'):
+                ace  = int(input())
                 self.sum = self.sum + ace
 
 def dealer_call():
@@ -86,9 +85,9 @@ def dealer_call():
             return True
         elif (c.sum < h.sum):
             continue
-        else:
+        elif (c.sum == 21):
             print('DEALER WIN!')
-            return True            
+            return True
 #__main__
 cards_c = ["two","three",'four','five','six','seven','eigth','nine','ten','jack','queen','king','ace']*2
 cards_h = ["two","three",'four','five','six','seven','eigth','nine','ten','jack','queen','king','ace']*2
@@ -100,6 +99,11 @@ s = 0
 s1 = 0
 print(f"Having bet:{fixed_bet}")
 bet = int(input("bet:"))
+if (bet >  fixed_bet):
+    while True:
+        bet = int(input("You don't have that much bet:"))
+        if (bet <= fixed_bet):
+            break
 c = computer(cards_c,a,s1)
 h = human(cards_h,b,s)
 c.display()
@@ -107,7 +111,6 @@ print('\n')
 h.display()
 while True:
     h.calc()
-    #print(h.sum)
     if  (h.sum > 21):
         print('HUMAN BUST!')
         break
@@ -120,8 +123,6 @@ while True:
             xx = dealer_call()
             if xx:
                 break
-
     elif (h.sum == 21):
         print('HUMAN WON!')
         break
-    
